@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <title>Self Service Order</title>
+    </head>
+
+    <body>
+        
+        <main id="app">
+            
+            <section class="items">
+                <h4> Selecione seus itens </h4>
+                <div 
+                    v-for = "produto in produtos" 
+                    class = "product"
+                    @click = "produto.active = !produto.active"
+                    :class = "{selected: produto.active}" 
+                >
+                    <div class="photo">
+                        <img :src="produto.photo">
+                    </div>
+                    <div class="description">
+                        <span class="name">{{produto.name}}</span>
+                        <span class="price"> $ {{produto.price}}</span>
+                        <div 
+                            class="quantity-area"
+                            v-if="produto.active"
+                        >
+                            <button 
+                                @click.stop = "produto.quantity--"
+                                :disabled="produto.quantity <= 0"
+                            >-</button>
+                            <span class="quantity">{{produto.quantity}}</span>
+                            <button @click.stop = "produto.quantity++">+</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+
+            <section 
+                class="summary"
+                v-if="total() > 0"
+            >
+                <strong>Resumo do pedido</strong>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="produto in produtos">
+                            <template v-if="produto.active">
+                                <td> {{produto.quantity}} x {{produto.name}}</td>
+                                <td>{{ (produto.quantity * produto.price).toFixed(2)}}</td>
+                            </template>
+                        </tr>
+                        
+                        <tr>
+                            <th>Total</th>
+                            <th>{{total()}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+        <script src="https://unpkg.com/vue@next"></script>
+        <script src="scripts.js"></script>
+    </body>
+
+</html>
