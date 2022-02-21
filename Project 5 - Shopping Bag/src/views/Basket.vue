@@ -15,12 +15,10 @@
           <span class="amount">{{produto.price}}</span>
         </div>
       </div>
-      <div class="grand-total"> Total do pedido: R$ {{calculaTotal()}}</div>
+      <div class="grand-total">Total do pedido: R$ {{calculaTotal()}}</div>
       </template>
       <template v-else>
-        <h4>
-           Sem itens no carrinho
-        </h4>
+        <h4>Sem itens no carrinho</h4>
       </template>
     </div>
   </div>
