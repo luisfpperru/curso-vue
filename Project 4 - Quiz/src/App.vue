@@ -30,10 +30,10 @@
     <section class="result" v-if="this.respostaSubmetida">
       <h4 
         v-if="this.respostaEscolhida == this.respostaCorreta"
-        v-html="'&#9989; Parabéns, a resposta'+this.respostaCorreta+' está correta.'">
+        v-html="'&#9989; Parabéns, a resposta '+this.respostaCorreta+' está correta.'">
       </h4>
       <h4 v-else
-        v-html="'&#10060; Que pena, a resposta está errada. A resposta correta é'+this.respostaCorreta+'.'">
+        v-html="'&#10060; Que pena, a resposta está errada. A resposta correta é '+this.respostaCorreta+'.'">
       </h4>
     </section>
   </div>
